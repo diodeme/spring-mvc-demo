@@ -19,6 +19,8 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.version>5.2.3.RELEASE</spring.version>
     <mybatis.version>3.2.4</mybatis.version>
+    <slf4j>1.7.25</slf4j>
+    <log4j2>2.8.2</log4j2>
   </properties>
 
   <dependencies>
@@ -28,6 +30,13 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
       <version>${spring.version}</version>
+      <exclusions>
+        <!--为避免与slf4j的冲突-->
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -87,13 +96,46 @@
     </dependency>
     <!--日志-->
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+    <!-- slf4j config start -->
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.8.0-alpha0</version>
-      <scope>test</scope>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j}</version>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- slf4j config end -->
 
+    <!-- log4j2 config start -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j2}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>${log4j2}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j2}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j2}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- log4j2 config end -->
 
     <!--j2ee相关包 servlet、jsp、jstl-->
     <dependency>
@@ -144,6 +186,29 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.6</version>
+    </dependency>
+
+    <!-- aop aspect注解导包-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.9.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjtools</artifactId>
+      <version>1.9.5</version>
     </dependency>
   </dependencies>
 

@@ -27,13 +27,15 @@ public class ProductController {
 
     @DeleteMapping
     public String deleteOne(@RequestParam("productId") int productId){
-        if(productService.deleteOne(productId)!=-1){
+        int result=productService.deleteOne(productId);
+        if(result!=-1&&result!=0){
             return "删除成功";
         }else {
             return "删除失败";
         }
     }
 
+    //todo 得到返回的主键
     @PostMapping
     public String insertOne(@RequestParam("productPrice") float productPrice){
         Product product=new Product();
@@ -47,7 +49,8 @@ public class ProductController {
 
     @PutMapping
     public String updateOne(@RequestParam("productId") int productId,@RequestParam("productPrice") float productPrice){
-        if(productService.updateOne(productId,productPrice)!=-1){
+        int result=productService.updateOne(productId,productPrice);
+        if(result!=-1&&result!=0){
             return "修改成功";
         }else {
             return "修改失败";
