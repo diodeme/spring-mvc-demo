@@ -29,7 +29,7 @@
     </bean>
 
     <!-- 自动扫描装配 -->
-    <context:component-scan base-package="com.diode.mvc.controller"/>
+    <context:component-scan base-package="com.diode.mvc"/>
 
 </beans>
 

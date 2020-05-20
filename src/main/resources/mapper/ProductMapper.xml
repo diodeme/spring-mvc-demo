@@ -1,1 +1,25 @@
-<!--TODO-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.diode.mvc.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.diode.mvc.pojo.Product">
+        <id column="product_id" jdbcType="INTEGER" property="productId" />
+        <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id, user_name
+    </sql>
+    <select id="selectOne" resultType="com.diode.mvc.pojo.Product">
+        SELECT product_id, product_price FROM product_info WHERE product_id = #{productId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteOne">
+        delete from product_info where product_id = #{productId,jdbcType=INTEGER}
+    </delete>
+    <update id="updateOne" >
+        update product_info set product_price = #{productPrice,jdbcType=DECIMAL}
+        where product_id = #{productId,jdbcType=INTEGER}
+    </update>
+    <insert id="insertOne" parameterType="com.diode.mvc.pojo.Product" useGeneratedKeys="true" keyProperty="productId" keyColumn="product_id">
+        insert into product_info(product_price) values(#{productPrice,jdbcType=DECIMAL})
+    </insert>
+
+</mapper>
